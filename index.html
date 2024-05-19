@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Health Care Recommendation System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  </head>
+
+  <style>
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            color: black;
+            margin-top: 0;
+            margin-left: 2px;
+        }
+
+        .myimg {
+            width: 50px;
+            height: 50px;
+            border: 2px solid black;
+            border-radius: 25px;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <!-- Logo at the top-left corner -->
+            <div class="logo">
+                <img class="myimg" src="data:image/jpeg;base64,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">
+
+               <!-- <img class="myimg" src="C:\Users\HP\Desktop\sem VI mini Project App\ML" alt=""> -->
+            </div>
+
+            <a class="navbar-brand" href="#">MediLink</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="file:///C:/Users/HP/Desktop/sem%20VI%20mini%20Project%20App/ML%20Project/ML%20codes%20git/Medicine-Recommendation-System-Personalized-Medical-Recommendation-System-with-Machine-Learning-main/about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="file:///C:/Users/HP/Desktop/sem%20VI%20mini%20Project%20App/ML%20Project/ML%20codes%20git/Medicine-Recommendation-System-Personalized-Medical-Recommendation-System-with-Machine-Learning-main/contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="file:///C:/Users/HP/Desktop/sem%20VI%20mini%20Project%20App/ML%20Project/ML%20codes%20git/Medicine-Recommendation-System-Personalized-Medical-Recommendation-System-with-Machine-Learning-main/developer.html">Developer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="file:///C:/Users/HP/Desktop/sem%20VI%20mini%20Project%20App/ML%20Project/ML%20codes%20git/Medicine-Recommendation-System-Personalized-Medical-Recommendation-System-with-Machine-Learning-main/blog.html">Blog</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+<!-- main form of page -->
+<h1 class="mt-4 my-4 text-center text-green">MediLink</h1>
+<div class="container my-4 mt-4" style="background: black; color: white; border-radius: 15px; padding: 40px;">
+    <form action="/predict" method="post">
+        <div class="form-group">
+            <label for="symptoms">Select Symptoms:</label>
+            <input type="text" class="form-control", id="symptoms" name="symptoms" placeholder="type systems such as itching, sleeping, aching etc">
+
+        </div>
+        <br>
+        <button type="button" id="startSpeechRecognition" class="btn btn-primary" style="margin-left:3px;border:1px solid white; border-radius:20px;">
+            Start Speech Recognition
+        </button>
+        <br>
+
+        <!-- Display the transcribed text here -->
+        <div name="mysysms" id="transcription"></div>
+<!--
+        {% if message %}
+        <p>{{ message }}</p>
+        {% endif %}
+        <br>
+-->
+        <button type="submit" class="btn btn-danger btn-lg" style="width: 100%; padding: 14px; margin-bottom: 5px;">Predict</button>
+    </form>
+</div>
+
+
+
+
+
+
+
+<!--
+{% if predicted_disease %}
+-->
+<!-- Results -->
+<h1 class="text-center my-4 mt-4">Our AI System Results</h1>
+<div class="container">
+
+    <div class="result-container">
+        <!-- Buttons to toggle display -->
+        <button class="toggle-button" data-bs-toggle="modal" data-bs-target="#diseaseModal" style="padding:4px;  margin: 5px 40px 5px 0; font-size:20px;font-weight:bold; width:140px; border-radius:5px; background:#F39334;color:black;">Disease</button>
+        <button class="toggle-button" data-bs-toggle="modal" data-bs-target="#descriptionModal" style="padding:4px; margin: 5px 40px 5px 0; font-size:20px;font-weight:bold; width:140px; border-radius:5px; background:#268AF3 ;color:black;">Description</button>
+        <button class="toggle-button" data-bs-toggle="modal" data-bs-target="#precautionModal" style="padding:4px; margin: 5px 40px 5px 0; font-size:20px;font-weight:bold; width:140px; border-radius:5px; background:#F371F9 ;color:black;">Precaution</button>
+        <button class="toggle-button" data-bs-toggle="modal" data-bs-target="#medicationsModal" style="padding:4px; margin: 5px 40px 5px 0; font-size:20px;font-weight:bold; width:140px;border-radius:5px; background:#F8576F ;color:black;">Medications</button>
+        <button class="toggle-button" data-bs-toggle="modal" data-bs-target="#workoutsModal" style="padding:4px; margin: 5px 40px 5px 0; font-size:20px;font-weight:bold; width:140px; border-radius:5px; background:#99F741 ;color:black;">Workouts</button>
+        <button class="toggle-button" data-bs-toggle="modal" data-bs-target="#dietsModal" style="padding:4px; margin: 5px 40px 5px 0; font-size:20px;font-weight:bold; width:140px; border-radius:5px; background:#E5E23D;color:black;">Diets</button>
+    </div>
+</div>
+
+<!--{% endif %} -->
+
+<!-- Disease Modal -->
+    <div class="modal fade" id="diseaseModal" tabindex="-1" aria-labelledby="diseaseModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #020606; color:white;"> <!-- Set header background color inline -->
+                    <h5 class="modal-title" id="diseaseModalLabel">Predicted Disease</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="background-color: #modal-body-color;"> <!-- Set modal body background color inline -->
+                    <p>{{ predicted_disease }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Description Modal -->
+    <div class="modal fade" id="descriptionModal" tabindex="-1" aria-labelledby="descriptionModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #020606; color:white;">
+                    <h5 class="modal-title" id="descriptionModalLabel">Description</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>{{ dis_des }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- Precaution Modal -->
+    <div class="modal fade" id="precautionModal" tabindex="-1" aria-labelledby="precautionModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #020606; color:white;">
+                    <h5 class="modal-title" id="precautionModalLabel">Precaution</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        {% for i in my_precautions %}
+                            <li>{{ i }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Medications Modal -->
+    <div class="modal fade" id="medicationsModal" tabindex="-1" aria-labelledby="medicationsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #020606; color:white;">
+                    <h5 class="modal-title" id="medicationsModalLabel">Medications</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        {% for i in medications %}
+                            <li>{{ i }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Workouts Modal -->
+    <div class="modal fade" id="workoutsModal" tabindex="-1" aria-labelledby="workoutsModalLabel" aria-hidden="true">
+        <div class="modal-dialog" >
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #020606; color:white;">
+                    <h5 class="modal-title" id="workoutsModalLabel">Workouts</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        {% for i in workout %}
+                            <li>{{ i }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Diets Modal -->
+    <div class="modal fade" id="dietsModal" tabindex="-1" aria-labelledby="dietsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #020606; color:white;">
+                    <h5 class="modal-title" id="dietsModalLabel">Diets</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        {% for i in my_diet %}
+                            <li>{{ i }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+        <script>
+    const startSpeechRecognitionButton = document.getElementById('startSpeechRecognition');
+    const transcriptionDiv = document.getElementById('transcription');
+
+    startSpeechRecognitionButton.addEventListener('click', startSpeechRecognition);
+
+    function startSpeechRecognition() {
+        const recognition = new webkitSpeechRecognition(); // Use webkitSpeechRecognition for compatibility
+
+        recognition.lang = 'en-US'; // Set the language for recognition
+
+        recognition.onresult = function (event) {
+            const result = event.results[0][0].transcript;
+            transcriptionDiv.textContent = result;
+        };
+
+        recognition.onend = function () {
+            console.log('Speech recognition ended.');
+        };
+
+        recognition.start();
+    }
+</script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+
+</html>
